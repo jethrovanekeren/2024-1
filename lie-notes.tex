@@ -1,0 +1,428 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{mathtools} % For dcases and \xrightarrow
+\usepackage[utf8]{inputenc}
+\usepackage[all,cmtip]{xy}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{url}
+\usepackage{csquotes}
+
+% WEIRD: bibtex didn't like the cite key ``humphreys-BGG''
+% But was OK when I changed it to ``humphreys.BGG'' for like a minute.
+% Then it stopped working again.
+
+%\usepackage{babel}[portuguese]
+%\usepackage{geometry}
+%\usepackage{cancel}
+
+\usepackage{tikz}
+%\usepackage{bbm}
+
+
+\usetikzlibrary{decorations.markings}
+
+\newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
+\newcommand{\vvec}[1]{\vert #1 \rangle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{rmrk}[thm]{Remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{exer}[thm]{Exercise}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}%[section]
+
+
+
+\numberwithin{equation}{section}
+
+
+
+% LECTURE TAG
+\newcommand{\lectag}[2]{\textbf{\color{blue}{#1}. Lecture #2}}
+
+% THE SQUARE BOX AT THE TOP OF THE PAGE
+\newcommand{\squarething}[1]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill #1  \hfill} }
+      \vspace{4mm}
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\DeclareMathOperator{\Gode}{Gode}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\sheaves}{Sh}
+\DeclareMathOperator{\presheaves}{PreSh}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Stab}{Stab}
+
+
+
+\DeclareMathOperator{\shom}{\underline{\Hom}}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\ch}{Ch}
+\DeclareMathOperator{\en}{End}
+\DeclareMathOperator{\rk}{Rank}
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\height}{ht}
+\DeclareMathOperator{\trans}{{\sf T}}
+\DeclareMathOperator{\tr}{Tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\sheafHom}{\underline{Hom}}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\zhu}{Zhu}
+\DeclareMathOperator{\lie}{Lie}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\img}{im}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Et}{\acute{E}t}
+
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\coev}{coev}
+
+\DeclareMathOperator{\BI}{BI}
+\DeclareMathOperator{\NI}{NI}
+\DeclareMathOperator{\LNI}{LNI}
+\DeclareMathOperator{\RNI}{RNI}
+
+
+
+
+
+\newcommand{\V}{\mathcal{V}}
+
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\wtil}[1]{\widetilde{#1}}
+\newcommand{\ov}[1]{\overline#1}
+
+\newcommand{\fu}{\mathfrak{u}}
+\newcommand{\op}{op}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\im}{im}
+
+\newcommand{\m}{\mathfrak{m}}
+
+\newcommand{\bbA}{\mathbb{A}}
+
+
+\newcommand{\al}{\alpha}
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\Om}{\Omega}
+\newcommand{\eps}{\epsilon}
+\newcommand{\D}{\Delta}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bbP}{\mathbb{P}}
+
+
+\newcommand{\frakb}{\mathfrak{b}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\h}{\mathfrak{h}}
+\newcommand{\n}{\mathfrak{n}}
+\newcommand{\gll}{\mathfrak{gl}}
+\newcommand{\sll}{\mathfrak{sl}}
+\newcommand{\spp}{\mathfrak{sp}}
+\newcommand{\soo}{\mathfrak{so}}
+
+\newcommand{\CA}{\mathcal{A}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\CD}{\mathcal{D}}
+\newcommand{\CE}{\mathcal{E}}
+\newcommand{\CF}{\mathcal{F}}
+\newcommand{\CG}{\mathcal{G}}
+\newcommand{\CL}{\mathcal{L}}
+\newcommand{\CP}{\mathcal{P}}
+\newcommand{\CR}{\mathcal{R}}
+\newcommand{\CV}{\mathcal{V}}
+\newcommand{\CW}{\mathcal{W}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\CU}{\mathcal{U}}
+\newcommand{\CM}{\mathcal{M}}
+
+\newcommand{\Ass}{\mathbf{Ass}}
+\newcommand{\Lie}{\mathbf{Lie}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Vect}{\mathbf{Vec}}
+
+
+
+\newcommand{\ma}{\mathfrak{a}}
+
+\newcommand{\Vir}{Vir}
+
+\newcommand{\vac}{\left|0\right>}
+
+\newcommand{\ket}[1]{\left|#1\right>}
+
+\newcommand{\stacksubscript}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+
+\newcommand{\tbt}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\squarething{Introduction to Lie algebras}
+
+Based on V. Kac's classic course at MIT.
+
+Jethro van Ekeren \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\lectag{2023-01-09}{01}
+
+
+%\tableofcontents
+
+\section{Preliminaries on linear algebra}
+
+
+
+\section{Lie algebras}
+
+\begin{defn}
+An algebra over a field $\F$ consists of a vector space $A$ over $\F$ and a function $* : A \times A \rightarrow A$ which is $\F$-bilinear, that is
+\begin{align*}
+(ax + by) * z &= a (x * z) + b (y * z), \\
+%
+\quad \text{and} \quad x * (ay + bz) &= a (x * y) + b (x * z)
+\end{align*}
+for all $x, y, z \in A$ and $a, b \in \F$.
+\end{defn}
+We tend to focus attention on specific classes of algebra, for example associative algebras being those in which the identity
+\[
+(x * y) * z = x * (y * z)
+\]
+holds for all $x, y, z \in A$.
+
+
+\begin{defn}
+A Lie algebra consists of a vector space $\g$ over a field $\F$ and an $\F$-bilinear product $[,] : \g \times \g \rightarrow \g$ called the bracket, which satisfy
+\begin{itemize}
+\item (Skewsymmetry) $[y, x] = -[x, y]$ for all $x, y \in \g$,
+
+\item (Jacobi identity) $[x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0$ for all $x, y, z \in \g$.
+\end{itemize}
+\end{defn}
+
+
+Homomorphism, subalgebra, ideal, kernel, image.
+
+Representation, subrepresentation, quotient.
+
+
+\section{Nilpotent and solvable Lie algebras}
+
+
+
+\begin{lemma}\label{lem:nilp.has.eigenvector}
+Let $V$ be a nonzero vector space and $X \in \en(V)$ nilpotent. Then there exists a nonzero vector $v \in V$ such that $Xv = 0$.
+\end{lemma}
+
+\begin{proof}
+By hypothesis there exists $n$ such that $X^n = 0$, and we may choose such $n$ to be minimal, i.e., so that $X^{n-1}V \neq 0$. Let $v \in X^{n-1}V$ be a nonzero vector. We have $Xv \in XX^{n-1}V = X^nV = 0$.
+\end{proof}
+
+
+\begin{lemma}
+Let $X \in \en(V)$ be nilpotent, then $\ad(X) \in \en(\en(V))$ is nilpotent.
+\end{lemma}
+
+\begin{proof}
+We consider the endomorphisms $L_X, R_X : \en(V) \rightarrow \en(V)$ defined by
+\[
+L_X(M) = XM, \quad \text{and} \quad R_X(M) = MX
+\]
+for $M \in \en(V)$. Notice that $\ad(X) = L_X - R_X$ Since $\en(V)$ is an associative algebra, $L_X$ and $R_X$ commute. We may therefore apply the binomial formula to obtain
+\[
+\ad(X)^n = \sum_{j=0}^n \binom{n}{j} L_X^j R_X^{n-j},
+\]
+which is to say
+\[
+\ad(X)^n M = \sum_{j=0}^n \binom{n}{j} X^j M X^{n-j} \quad \text{for all $M \in \en(V)$}.
+\]
+Since $X$ is nilpotent it is possible to choose $n$ sufficiently large that in each summand above, either $X^j = 0$ or $X^{n-j} = 0$. Therefore $\ad(X)$ is nilpotent.
+\end{proof}
+
+
+
+
+
+
+\begin{thm}[Engel's Theorem]
+Let $V$ be a nonzero finite dimensional vector space and $\g \subset \gll_V$ a Lie subalgebra. If $X$ is nilpotent for all $X \in \g$ then there exists a nonzero vector $v \in V$ such that $X v = 0$ for all $X \in \g$.
+\end{thm}
+
+\begin{proof}
+Since $V$ is finite dimensional, so is $\g$. If $\dim(\g) = 0$ then the assertion is true of any nonzero vector $v \in V$. If $\dim(\g) = 1$ then the assertion is Lemma \ref{lem:nilp.has.eigenvector}. We proceed by induction on $\dim(\g)$. Suppose $\dim(\g) = n \geq 2$ and suppose the assertion has been established for all finite dimensional $U$ and $\g \subset \gll_U$ satisfying the hypotheses of the theorem and of dimension at most $n-1$.
+
+Let $\h \subsetneq \g$ be a proper Lie subalgebra of maximal dimension. Such a Lie subalgebra exists and has dimension at least $1$, since $\F x \subset \g$ is a Lie subalgebra for any $x \in \g$. We now consider the restriction to $\h$ of the adjoint representation, i.e.,
+\[
+\ad|_{\h} : \h \rightarrow \gll_{\g},
+\]
+turning $\g$ into a representation of $\h$. Since $\h \subset \g$ is a subalgebra, we have $\ad|_{\h}(\h) \subset \h$, i.e., $\h \subset \g$ is a subrepresentation. We consider the quotient representation
+\[
+\pi : \h \rightarrow \gll_{\g/\h},
+\]
+and the Lie subalgebra $\im(\pi) \subset \gll_{\g/\h}$.
+
+Since $\g$ consists of nilpotent endomorphisms of $V$, Lemma \ref{} implies that $\ad(X) \in \gll_{\g}$ is nilpotent for each $X \in \g$. It follows that $A \in \gll_{\g/\h}$ is nilpotent for each $A \in \im(\pi)$. Since $\dim(\im(\h)) \leq \dim(\h) < \dim(\g)$, the inductive hypothesis assures us that there exists nonzero $\ov{a} \in \g/\h$ such that $\pi(X)\ov{a} = \ov{0}$ for all $X \in \h$. If $a \in \g$ is a representative of $\ov{a}$ then
+\[
+[X, a] \in \h \quad \text{for all $X \in \h$},
+\]
+or rather $[a, \h] \subset \h$.
+
+Now we notice that $\wtil{\h} = \h + \F a \subset \g$ is a Lie subalgebra since $[a, a] = 0$ and $[a, \h] \subset \h$. Since $a \notin \h$ we have $\dim\wtil\h > \dim\h$ and so by maximality of $\dim\h$ we have $\wtil\h = \g$.
+
+We now apply the inductive hypothesis again, this time to assure ourselves of the existence of nonzero $v \in V$ such that $Xv = 0$ for all $X \in \h$. If we can find such $v$ for which $av = 0$ also holds then clearly we will have established the theorem by induction. Thus let us consider the nonzero vector subspace
+\[
+V_0 = \{v \in V \mid \text{$Xv = 0$ for all $X \in \h$} \} \subset V.
+\]
+We show that $a(V_0) \subset V_0$. Indeed if $v \in V_0$ and $X \in \h$ then
+\[
+X a v = a X v + [X, a] v
+\]
+and since $[X, a] \in \h$ by \eqref{}, the right hand side vanishes. Thus $av \in V_0$.
+
+Finally Lemma \ref{lem:nilp.has.eigenvector} implies that there exists nonzero $v \in V_0$ such that $av = 0$, and we are done.
+\end{proof}
+
+
+
+
+
+\begin{defn}
+A \emph{root system} consists of a vector space $V$ over $\R$ of finite dimension $n$, a positive definite symmetric bilinear form $(\cdot, \cdot) : V \times V \rightarrow \R$ and a finite set $\D \subset V \backslash \{0\}$, satisfying the following properties:
+\begin{itemize}
+\item The $\R$-linear span of $\D$ is $V$,
+
+\item for each pair $\al, \beta \in \D$ the set $\{\beta + n \al \mid n \in \Z\} \cap (\D \cup \{0\})$ takes the form
+\[
+\{\beta + k \al \mid \text{$k \in \Z$ and $-p \leq k \leq q$}\}
+\]
+for some pair of non negative integers $p, q$. Furthermore $p$ and $q$ satisfy
+\[
+p-q = \frac{2(\al, \beta)}{(\al, \al)},
+\]
+
+\item for each $\al \in \D$ the equality $\{n \al \mid n \in \Z\} \cap \D = \{\al, -\al\}$ holds.
+\end{itemize}
+\end{defn}
+
+\begin{defn}
+Let $V$ be a finite dimensional vector space over $\R$ and $(\cdot, \cdot) : V \times V \rightarrow \R$ a positive definite symmetric bilinear form. For $\al \in V \backslash \{0\}$ the endomorphism $r_\al \in \en(V)$ defined by
+\[
+r_\al(\la) = \la - \frac{2(\al, \la)}{(\al, \al)} \al
+\]
+is called the reflection in $\al$.
+\end{defn}
+
+\begin{lemma}
+The reflection $r_\al$ is invertible and $r_\al^2 = I_V$.
+\end{lemma}
+
+\begin{prop}
+Let $\D$ be a root system and $\al \in \D$. Then $r_\al(\D) = \D$.
+\end{prop}
+
+\begin{proof}
+Since $r_\al$ is invertible it suffices to show that $r_\al(\D) \subset \D$.
+\end{proof}
+
+
+
+We now describe how to obtain a root system from a semisimple Lie algebra. Let $\g$ be a semisimple Lie algebra of rank $n$, $\h \subset \g$ a Cartan subalgebra, and
+\[
+\g = \h \oplus \bigoplus_{\al \in \D} \g_\al
+\]
+the corresponding root space decomposition. Since $\F$ is of characteristic $0$ there is a canonical embedding $\Q \subset \F$ and so we can regard $\h^*$ as a vector space over $\Q$. Let $V_\Q \subset \h^*$ denote the $\Q$-span of $\D$. We claim that the dimension of $V_\Q$ is $n$.
+
+\begin{defn}
+Let $\g$ be a semisimple Lie algebra. The root system of $\g$
+\end{defn}
+
+
+\begin{thm}
+
+\end{thm}
+
+
+
+\begin{prop}
+Let $\D$ be a root system which satisfies the following condition for each pair $\al, \beta \in \D$: There exists a sequence $\gamma_i \in \D$ for $i = 0, 1, \ldots, n+1$ for which $\gamma_0 = \al$, $\gamma_{n+1} = \beta$ and for each $i = 0, 1, \ldots, n$ we have $\gamma_i + \gamma_{i+1} \in \D$. Then $\D$ is indecomposable.
+\end{prop}
+
+\begin{proof}
+Suppose, on the contrary that $\D$ is decomposable yet satisfies the condition presented in the theorem statement. Then we may take $\al$ and $\beta$ in distinct orthogonal components $\D$, and a sequence of $\gamma_i$. The $\gamma_i$ cannot all be in the same component (call it $\D_0$) as $\gamma_0 = \al$, and so there exists some index $j$ for which $\gamma_j \in \D_0$ and $\gamma_{j+1} \notin \D_0$. But then $\gamma_j + \gamma_{j+1}$ cannot be a root, and this contradiction proves the proposition.
+\end{proof}
+
+
+
+
+\end{document}
