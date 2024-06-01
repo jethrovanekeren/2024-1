@@ -170,7 +170,7 @@
 \newcommand{\bbP}{\mathbb{P}}
 
 
-\newcommand{\frakb}{\mathfrak{b}}
+\newcommand{\fb}{\mathfrak{b}}
 \newcommand{\g}{\mathfrak{g}}
 \newcommand{\h}{\mathfrak{h}}
 \newcommand{\n}{\mathfrak{n}}
@@ -353,8 +353,99 @@ and since $[X, a] \in \h$ by \eqref{}, the right hand side vanishes. Thus $av \i
 Finally Lemma \ref{lem:nilp.has.eigenvector} implies that there exists nonzero $v \in V_0$ such that $av = 0$, and we are done.
 \end{proof}
 
+\begin{cor}
+Let $V$ be a finite dimensional vector space and $\rho : \g \rightarrow \gll_V$ a representation of a Lie algebra $\g$ in $V$. Suppose that $\rho(x)$ is nilpotent for each $x \in \g$. Then there exists a basis of $V$ relative to which $\rho(x)$ is strictly upper triangular for all $x \in \g$.
+\end{cor}
+
+\begin{proof}
+By Engel's theorem there exists nonzero $v \in V$ such that $\rho(x)v = 0$ for all $x \in \g$. Set $v_1 = v$ and let $V_2 = V / \F v_1$ be the quotient representation. Since the quotient also satisfies the hypotheses of Engel's theorem, there exists nonzero $v' + \F v \in V_2$ annihilated by all $\rho(x)$. Let $v_2 \in V$ be a representative of $v'+\F v$ and $V_3 = V / \F v_1 + \F v_2$. Continuing in this way we obtain a basis $\{v_1, v_2, \ldots, v_n\}$ of $V$ such that $\rho(x)v_k$ lies in the span of $\{v_1, \ldots, v_{k_1}\}$ for each $k$. This is the basis with the property asserted in the statement of the proposition.
+\end{proof}
+
+\begin{defn}
+The subset of $\gll_n$ consisting of all upper triangular matrices is denoted $\fb_n$. The subset of $\gll_n$ consisting of all strictly upper triangular matrices is denoted $\n_n$. These are Lie subalgebras of $\gll_n$.
+\end{defn}
+
+\begin{defn}
+Let $\g^0 = \g$ and $\g^{n+1} = [\g, \g^n]$ for all $n \geq 0$. This decreasing chain of subspaces is called the central series of $\g$. If there exists $N$ such that $\g^N = 0$ then $\g$ is said to be nilpotent.
+\end{defn}
+
+\begin{defn}
+Let $\g^0 = \g$ and $\g^{(n+1)} = [\g^{(n)}, \g^{(n)}]$ for all $n \geq 0$. This decreasing chain of subspaces is called the derived series of $\g$. If there exists $N$ such that $\g^{(N)} = 0$ then $\g$ is said to be solvable.
+\end{defn}
+
+\begin{prop}
+For all $n$ the subspaces $\g^n$ and $\g^{(n)}$ are ideals in $\g$.
+\end{prop}
+
+\begin{rem}
+Evidently an abelian Lie algebra is nilpotent.
+\end{rem}
+
+\begin{prop}
+A nilpotent Lie algebra is solvable.
+\end{prop}
+
+\begin{proof}
+Let $\g$ be a Lie algebra. We claim that $\g^{(n)} \subset \g^n$ for all $n$. This is evident for $n=0$ and since
+\[
+\g^{(n+1)} = [\g^{(n)}, \g^{(n)}] \subset [\g, \g^{(n)}] \subset [\g, \g^{n}] = \g^{n+1}
+\]
+it holds for all $n$ by induction. The proposition follows.
+\end{proof}
+
+\begin{prop}
+The Lie algebra $\n_n$ is nilpotent and the Lie algebra $\fb_n$ is solvable. Furthermore $\n_n$ is an ideal in $\fb_n$.
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{prop}
+Let $\g$ be a Lie algebra and $\h \subset \g$ a subalgebra.
+\begin{itemize}
+\item[(a)] If $\g$ is nilpotent then $\h$ is also nilpotent.
+
+\item[(b)] If $\g$ is solvable then $\h$ is also solvable.
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+Let $\g$ be a Lie algebra and $\h \subset \g$ an ideal.
+\begin{itemize}
+\item[(a)] If $\g$ is nilpotent then $\g/\h$ is also nilpotent.
+
+\item[(b)] If $\g$ is solvable then $\g/\h$ is also solvable.
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{prop}
+Let $\g$ be a Lie algebra and $\h \subset \g$. Suppose the Lie algebras $\h$ and $\g/\h$ are solvable. Then $\g$ is solvable.
+\end{prop}
+
+\begin{proof}
+We denote the quotient $\g/\h$ as $\ov\g$ for convenience. Since $\h$ is an ideal in $\g$ it is easy to confirm that $\ov\g^{(n)} = \g^{(n)} + \h$ for all $\n$. Since $\ov\g$ is solvable there exists $M$ such that $\ov\g^{(M)} = 0$, so that $\g^{(M)} \subset \h$. On the other hand since $\h$ is solvable there exists $N$ such that $\h^{(N)} = 0$. We then have
+\[
+\g^{(M+N)} \subset \h^{(N)} = 0,
+\]
+completing the proof.
+\end{proof}
 
 
+
+
+\section{Lie's theorem}
+
+
+
+
+
+
+\section{Root systems}
 
 
 \begin{defn}
